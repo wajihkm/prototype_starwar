@@ -28,7 +28,7 @@ module.exports = {
       let counts = _.countBy(charactersAll);
 
       let popularId = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
-      let key = popularId[1];
+      let key = parseInt(popularId[0]);
 
       let popularChar = await collection1.findOne({ id: key });
 
