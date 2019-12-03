@@ -43,7 +43,9 @@
 
     class OneResult extends React.Component {
       render() {
-        let html = this.props.result.join();
+        let html = Array.isArray(this.props.result)
+          ? this.props.result.map((r, i) => <div key={i}>{r} <br /></div>)
+          : this.props.result
 
         return (
           <div className="col">
@@ -56,7 +58,7 @@
 
     class Results extends React.Component {
       render() {
-        const html = this.props.answers.map((res, idx) => <OneResult key={idx} title={res.title} result={res.result} />);
+        const html = this.props.answers.map(res => <OneResult key={res.id} title={res.title} result={res.result} />);
 
         return html;
       }
@@ -79,18 +81,26 @@
       state = {
         answers: [
           {
+            id: 1,
+            fetched: false,
             title: 'Which of all StarWars movies has longest opening crawl?',
             result: ['longestCrawlFilm.title']
           },
           {
+            id: 2,
+            fetched: false,
             title: 'What character (person) appeared in the most of StarWars films?',
             result: ['popularCharacter.name']
           },
           {
+            id: 3,
+            fetched: false,
             title: 'What speices appeared in the most number of StarWars films?',
             result: ['popularSpecies 1', 'popularSpecies 2', "s.name + ' (' + s.count + ')'"]
           },
           {
+            id: 4,
+            fetched: true,
             title: 'What planet in StarWars universe provided largest number of vehicle pilots?',
             result: ['planetPilots 1', 'planetPilots 2']
             /*
@@ -101,20 +111,19 @@
             */
           },
         ],
-        fetched: true,
-        hide: true
+        hide: true,
+        fetched: false
+      }
+
+      fetch = () => {
+        this.setState({
+          fetched: this.state.answers.reduce((acc, cur) => acc && cur, true)
+        })
       }
 
       toggle = () => {
         this.setState({
           hide: !this.state.hide
-        })
-      };
-
-      fetch = (data) => {
-        this.setState({
-          fetched: true,
-          answers: data
         })
       };
 
@@ -146,6 +155,38 @@
       }
 
       componentDidMount() {
+        fetch('/api/v1/starwar/longest-crawl-film')
+          .then(results => results.json())
+          .then(result => {
+            console.log(result);
+
+            this.state.answers[0].result = result.title;
+            this.state.answers[0].fetched = true;
+
+            this.fetch();
+          })
+
+        fetch('/api/v1/starwar/popular-character')
+          .then(results => results.json())
+          .then(result => {
+            console.log(result);
+
+            this.state.answers[1].result = result.name;
+            this.state.answers[1].fetched = true;
+
+            this.fetch();
+          })
+
+        fetch('/api/v1/starwar/popular-species')
+          .then(results => results.json())
+          .then(result => {
+            console.log(result);
+
+            this.state.answers[2].result = result.map(s => s.name + ' (' + s.count + ')');
+            this.state.answers[2].fetched = true;
+
+            this.fetch();
+          })
 
       }
     }
