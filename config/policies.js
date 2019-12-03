@@ -23,5 +23,5 @@ module.exports.policies = {
   'deliver-contact-form-message': true,
 
   //
-  'starwar/*': true,
+  // 'starwar/*': true,
 };
