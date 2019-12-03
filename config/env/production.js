@@ -255,6 +255,12 @@ module.exports = {
     //   'https://staging.example.com',
     // ],
 
+    beforeConnect: function (handshake, proceed) {
+
+      // Send back `true` to allow the socket to connect.
+      // (Or send back `false` to reject the attempt.)
+      return proceed(undefined, true);
+    },
 
     /***************************************************************************
     *                                                                          *
