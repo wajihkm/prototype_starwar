@@ -69,5 +69,6 @@ module.exports.routes = {
   'GET /api/v1/starwar/longest-crawl-film': { action: 'starwar/longest-crawl-film' },
   'GET /api/v1/starwar/popular-character': { action: 'starwar/popular-character' },
   'GET /api/v1/starwar/popular-species': { action: 'starwar/popular-species' },
+  'GET /api/v1/starwar/planet-with-vehicles': { action: 'starwar/planet-with-vehicles' }
 
 };
