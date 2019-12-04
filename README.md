@@ -3,7 +3,7 @@
 
 clone the repo
 
-npm install
+`npm install`
 
 // Production run
 
@@ -29,3 +29,8 @@ if you want to test it locally, try one of those ways:
 
 ### Task 4
 in the current Database schema there is no relation between the Planet and People, So it is not possible to solve it because there is no way to know the Pilot's Planet.
+
+
+## Important Note
+The App does not use a Database, So the Login session will be lost after each server restart.
+Also the User's record will not be permanent on Heroku server.
