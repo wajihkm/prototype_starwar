@@ -13,6 +13,8 @@ npm install
 
 `node app.js`
 
+[http://localhost:1337](http://localhost:1337)
+
 
 if you run `npm start` on localhost, the server will redirect you to the main site (hosted on [Heroku](https://prototype-starwar.herokuapp.com))
 
