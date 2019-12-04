@@ -25,9 +25,13 @@ module.exports = {
 
       let charactersArr = films.map(f => f.characters);
       let charactersAll = charactersArr.reduce((acc, cur) => [...acc, ...cur], []);
+
+      // GroupBy Number of occurencies by CharacterId
       let counts = _.countBy(charactersAll);
 
+      // Sort the result Array by Number of occurencies and Fetch the first result
       let popularId = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+
       let key = parseInt(popularId[0]);
 
       let popularChar = await collection1.findOne({ id: key });
