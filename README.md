@@ -1,5 +1,5 @@
 # Prototype.net test
-# Starwar API
+## Starwar API
 
 clone the repo
 
@@ -11,7 +11,7 @@ npm install
 
 // Local development run
 
-node app.js
+`node app.js`
 
 
 if you run `npm start` on localhost, the server will redirect you to the main site (hosted on [Heroku](https://prototype-starwar.herokuapp.com))
@@ -25,5 +25,5 @@ if you want to test it locally, try one of those ways:
 
 //
 
-## Task 4
+### Task 4
 in the current Database schema there is no relation between the Planet and People, So it is not possible to solve it because there is no way to know the Pilot's Planet.
