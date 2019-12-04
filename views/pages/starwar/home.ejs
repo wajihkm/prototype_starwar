@@ -182,7 +182,7 @@
           .then(result => {
             console.log(result);
 
-            this.state.answers[2].result = result.map(s => s.name + ' (' + s.count + ')');
+            this.state.answers[2].result = result.map(s => s.name + ' (' + s.people.length + ')');
             this.state.answers[2].fetched = true;
 
             this.fetch();

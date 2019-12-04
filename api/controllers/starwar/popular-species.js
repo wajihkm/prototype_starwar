@@ -32,9 +32,9 @@ module.exports = {
 
       let popularSpecies = await collection1.find({ id: { '$in': keys } }).toArray();
 
-      popularSpecies.forEach(s => {
+      /*popularSpecies.forEach(s => {
         s.count = popularIds.find(f => parseInt(f[0]) === s.id)[1];
-      });
+      });*/
 
       return exits.success(popularSpecies);
     }
